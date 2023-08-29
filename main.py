@@ -46,7 +46,7 @@ height_label.pack()
 #button
 def calculate():
     if len(weight_entry.get()) == 0 or len(height_entry.get()) == 0:
-        result_label.config(text="Please Both Weight and Height")
+        result_label.config(text="Please Enter Both Weight and Height")
     else:
         try:
             user_weight = float(weight_entry.get())
