@@ -24,7 +24,7 @@ weight_entry = tkinter.Entry(width=20)
 weight_entry.pack()
 
 #height label
-height_label = Label_Head("Enter Your Height (m)")
+height_label = Label_Head("Enter Your Height (cm)")
 
 #entry2
 height_entry = tkinter.Entry(width=20)
@@ -43,6 +43,21 @@ height_label.config(padx=10, bg=backcolor)
 height_label.pack()
 '''
 
+def result_write(result):
+    if result < 18.5:
+        result_label.config(text=f"Your BMI is {result}. You are UNDERWEİGHT", bg="light green", fg="black")
+    elif 18.5 <= result <= 24.9:
+        result_label.config(text=f"Your BMI is {result}. You are NORMAL WEİGHT", bg="green", fg="white")
+    elif 25.0 <= result <= 29.9:
+        result_label.config(text=f"Your BMI is {result}. You are OVERWEİGHT", bg="orange", fg="white")
+    elif 30.0 <= result <= 34.9:
+        result_label.config(text=f"Your BMI is {result}. You are OBESITY CLASS 1", bg="red", fg="black")
+    elif 35.0 <= result <= 39.9:
+        result_label.config(text=f"Your BMI is {result}. You are OBESITY CLASS 2", bg="red", fg="black")
+    else:
+        result_label.config(text=f"Your BMI is {result}. You are OBESITY CLASS 3", bg="dark red", fg="white")
+    return result
+
 #button
 def calculate():
     if len(weight_entry.get()) == 0 or len(height_entry.get()) == 0:
@@ -52,19 +67,8 @@ def calculate():
             user_weight = float(weight_entry.get())
             user_height = float(height_entry.get()) / 100
             result = float(round(user_weight / (user_height * user_height), 2))
+            result_write(result)
 
-            if result < 18.5:
-                result_label.config(text=f"Your BMI is {result}. You are UNDERWEİGHT", bg="light green", fg="black")
-            elif result >= 18.5 and result <= 24.9:
-                result_label.config(text=f"Your BMI is {result}. You are NORMAL WEİGHT", bg="green", fg="white")
-            elif result >= 25.0 and result <= 29.9:
-                result_label.config(text=f"Your BMI is {result}. You are OVERWEİGHT", bg="orange", fg="white")
-            elif result >= 30.0 and result <= 34.9:
-                result_label.config(text=f"Your BMI is {result}. You are OBESITY CLASS 1", bg="red", fg="black")
-            elif result >= 35.0 and result <= 39.9:
-                result_label.config(text=f"Your BMI is {result}. You are OBESITY CLASS 2", bg="red", fg="black")
-            else:
-                result_label.config(text=f"Your BMI is {result}. You are OBESITY CLASS 3", bg="dark red", fg="white")
         except:
             result_label.config(text="Please Enter A Valid Number")
 
